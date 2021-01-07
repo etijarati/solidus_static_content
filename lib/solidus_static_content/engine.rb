@@ -21,6 +21,7 @@ module SolidusStaticContent
         [:pages],
         'file-text',
         condition: -> { can?(:admin, Spree::Page) },
+        position: 4.5
       )
     end
 
