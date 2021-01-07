@@ -1,6 +1,10 @@
 <% if page.foreign_link.present? %>
-  <li><%= link_to page.title, page.foreign_link, {:target => "_blank"} %></li>
+  <li class=<%= 'nav-item' if position == :header %>>
+    <%= link_to page.title, page.foreign_link, target: '_blank', class: ('nav-link' if position == :header) %>
+  </li>
 <% else %>
   <% page_uri = Rails.application.routes.named_routes[:spree].path.spec.to_s == '/' ? page.slug : Rails.application.routes.named_routes[:spree].path.spec.to_s + page.slug %>
-  <li class=<%= 'current' if (request.fullpath.gsub('//','/') == page_uri) %>><%= link_to page.title, page_uri  %></li>
+  <li class='<%= 'current' if (request.fullpath.gsub('//','/') == page_uri) %> <%= 'nav-item' if position == :header %>'>
+    <%= link_to page.title, page_uri, class: ('nav-link' if position == :header) %>
+  </li>
 <% end %>
